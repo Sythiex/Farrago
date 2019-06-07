@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"normal": {
+			"model": "farrago:block_infinite_water_model"
+		}
+	}
+}

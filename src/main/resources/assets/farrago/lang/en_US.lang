@@ -1,0 +1,13 @@
+itemGroup.tab_farrago=Farrago
+
+tile.block_infinite_water.name=Ender Water Well
+tile.block_blazing_lantern.name=Blazing Lantern
+tile.block_cotton_crops.name=Cotton
+tile.block_flower_black.name=Black Tulip
+
+item.item_build_wand.name=Creative Build Wand
+item.item_bat_killer.name=Bat-B-Gone
+item.item_cotton_seeds.name=Cotton Seeds
+item.item_cotton.name=Cotton
+
+msg.buildwandreset.txt=Coordinates cleared

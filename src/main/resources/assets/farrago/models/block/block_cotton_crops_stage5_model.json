@@ -1,0 +1,6 @@
+{
+	"parent": "block/crop",
+	"textures": {
+		"crop": "farrago:blocks/block_cotton_crops_stage5"
+	}
+}

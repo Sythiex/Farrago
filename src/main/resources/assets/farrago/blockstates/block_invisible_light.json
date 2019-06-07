@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"normal": {
+			"model": "farrago:block_invisible_light_model"
+		}
+	}
+}
