@@ -72,6 +72,18 @@ public class FarragoRecipes
 		else
 			FarragoMod.logger.info("Cotton Crops disabled in config, skipping recipe registration");
 		
+		if(FarragoConfig.addItemBatKiller)
+		{
+			IRecipe itemBatKillerRecipe = new ShapedOreRecipe(noGroup, new ItemStack(FarragoItems.itemBatKiller), new Object[] {
+					" G ",
+					"LFL",
+					" G ",
+					'G', "ingotGold",
+					'L', "leather",
+					'F', new ItemStack(Items.FIRE_CHARGE)	});
+			GameData.register_impl(itemBatKillerRecipe.setRegistryName(new ResourceLocation(FarragoMod.MODID + ":item_bat_killer")));
+		}
+		
 		/////////////////////////////////////////////////////////////////////////////// VANILLA ///////////////////////////////////////////////////////////////////////////////
 		
 		if(FarragoConfig.addBlockGrassRecipe)

@@ -29,30 +29,21 @@ public class ClientProxy extends CommonProxy
 		
 		/////////////////////////////////////////////////////////////////////////////// BLOCKS ///////////////////////////////////////////////////////////////////////////////
 		
-		if(FarragoConfig.addBlockInfiniteWater)
-			ModelLoader.setCustomModelResourceLocation(FarragoBlocks.itemBlockInfiniteWater, 0, new ModelResourceLocation(FarragoMod.MODID + ":" + BlockInfiniteWater.NAME, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(FarragoBlocks.itemBlockInfiniteWater, 0, new ModelResourceLocation(FarragoMod.MODID + ":" + BlockInfiniteWater.NAME, "inventory"));
 		
-		if(FarragoConfig.addBlockBlazingLantern)
-			ModelLoader.setCustomModelResourceLocation(FarragoBlocks.itemBlockBlazingLantern, 0, new ModelResourceLocation(FarragoMod.MODID + ":" + BlockBlazingLantern.NAME, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(FarragoBlocks.itemBlockBlazingLantern, 0, new ModelResourceLocation(FarragoMod.MODID + ":" + BlockBlazingLantern.NAME, "inventory"));
 		
-		if(FarragoConfig.addFlowers)
-		{
-			ModelLoader.setCustomModelResourceLocation(FarragoBlocks.itemBlockFlowerBlack, 0, new ModelResourceLocation(FarragoMod.MODID + ":" + BlockFlowerBlack.NAME, "inventory"));
-		}
+		ModelLoader.setCustomModelResourceLocation(FarragoBlocks.itemBlockFlowerBlack, 0, new ModelResourceLocation(FarragoMod.MODID + ":" + BlockFlowerBlack.NAME, "inventory"));
 		
 		/////////////////////////////////////////////////////////////////////////////// ITEMS ///////////////////////////////////////////////////////////////////////////////
 		
-		if(FarragoConfig.addItemBuildWand)
-			ModelLoader.setCustomModelResourceLocation(FarragoItems.itemBuildWand, 0, new ModelResourceLocation(FarragoMod.MODID + ":" + ItemBuildWand.NAME, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(FarragoItems.itemBuildWand, 0, new ModelResourceLocation(FarragoMod.MODID + ":" + ItemBuildWand.NAME, "inventory"));
 		
-		if(FarragoConfig.addItemBatKiller)
-			ModelLoader.setCustomModelResourceLocation(FarragoItems.itemBatKiller, 0, new ModelResourceLocation(FarragoMod.MODID + ":" + ItemBatKiller.NAME, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(FarragoItems.itemBatKiller, 0, new ModelResourceLocation(FarragoMod.MODID + ":" + ItemBatKiller.NAME, "inventory"));
 		
-		if(FarragoConfig.addCotton)
-		{
-			ModelLoader.setCustomModelResourceLocation(FarragoItems.itemCottonSeeds, 0, new ModelResourceLocation(FarragoMod.MODID + ":" + ItemCottonSeeds.NAME, "inventory"));
-			ModelLoader.setCustomModelResourceLocation(FarragoItems.itemCotton, 0, new ModelResourceLocation(FarragoMod.MODID + ":" + ItemCotton.NAME, "inventory"));
-		}
+		ModelLoader.setCustomModelResourceLocation(FarragoItems.itemCottonSeeds, 0, new ModelResourceLocation(FarragoMod.MODID + ":" + ItemCottonSeeds.NAME, "inventory"));
+		
+		ModelLoader.setCustomModelResourceLocation(FarragoItems.itemCotton, 0, new ModelResourceLocation(FarragoMod.MODID + ":" + ItemCotton.NAME, "inventory"));
 	}
 	
 	public void init(FMLInitializationEvent event)

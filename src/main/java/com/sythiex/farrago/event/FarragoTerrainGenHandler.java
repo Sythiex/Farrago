@@ -34,18 +34,21 @@ public class FarragoTerrainGenHandler
 	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = false)
 	public void onDecorateEvent(Decorate event)
 	{
-		if(event.getType() == EventType.FLOWERS)
+		if(FarragoConfig.addFlowers)
 		{
-			int xRand = event.getRand().nextInt(16) + 8;
-			int zRand = event.getRand().nextInt(16) + 8;
-			BlockPos chunkPos = new BlockPos(event.getChunkPos().getXStart(), 0, event.getChunkPos().getZStart());
-			int yRange = event.getWorld().getHeight(chunkPos.add(xRand, 0, zRand)).getY() + 32;
-			
-			if(yRange > 0)
+			if(event.getType() == EventType.FLOWERS)
 			{
-				int yRand = event.getRand().nextInt(yRange);
-				BlockPos placementPos = chunkPos.add(xRand, yRand, zRand);
-				worldGenFlowersFarrago.generate(event.getWorld(), event.getRand(), placementPos);
+				int xRand = event.getRand().nextInt(16) + 8;
+				int zRand = event.getRand().nextInt(16) + 8;
+				BlockPos chunkPos = new BlockPos(event.getChunkPos().getXStart(), 0, event.getChunkPos().getZStart());
+				int yRange = event.getWorld().getHeight(chunkPos.add(xRand, 0, zRand)).getY() + 32;
+				
+				if(yRange > 0)
+				{
+					int yRand = event.getRand().nextInt(yRange);
+					BlockPos placementPos = chunkPos.add(xRand, yRand, zRand);
+					worldGenFlowersFarrago.generate(event.getWorld(), event.getRand(), placementPos);
+				}
 			}
 		}
 	}

@@ -1,12 +1,16 @@
 package com.sythiex.farrago.item;
 
+import java.util.List;
+
 import javax.annotation.Nullable;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import com.sythiex.farrago.FarragoMod;
 import com.sythiex.farrago.gui.FarragoGuiHandler;
 import com.sythiex.farrago.util.Math3d;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -35,6 +39,13 @@ public class ItemBuildWand extends Item
 		this.setRegistryName(NAME);
 		this.setCreativeTab(FarragoMod.tabFarrago);
 		this.setMaxStackSize(1);
+	}
+	
+	// while item is WIP
+	@Override
+	public String getItemStackDisplayName(ItemStack stack)
+	{
+		return ChatFormatting.RED + super.getItemStackDisplayName(stack);
 	}
 	
 	@Override

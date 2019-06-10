@@ -3,6 +3,7 @@ package com.sythiex.farrago.init;
 import com.sythiex.farrago.FarragoMod;
 
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class FarragoConfig
@@ -14,7 +15,6 @@ public class FarragoConfig
 	
 	public static boolean addBlockInfiniteWater;
 	public static boolean addBlockBlazingLantern;
-	public static boolean addItemBuildWand;
 	public static boolean addItemBatKiller;
 	public static boolean addCotton;
 	public static boolean addFlowers;
@@ -60,30 +60,36 @@ public class FarragoConfig
 		
 		config.load();
 		
-		addItemBatKiller = config.getBoolean("Bat-B-Gone", CATEGORY_FEATURES, true, "");
-		addBlockBlazingLantern = config.getBoolean("Blazing Lantern", CATEGORY_FEATURES, true, "");
-		addCotton = config.getBoolean("Cotton Plants", CATEGORY_FEATURES, true, "");
-		addItemBuildWand = config.getBoolean("Creative Build Wand [WIP]", CATEGORY_FEATURES, false, "");
-		addBlockInfiniteWater = config.getBoolean("Ender Water Well", CATEGORY_FEATURES, true, "");
-		addFlowers = config.getBoolean("Extra Flowers", CATEGORY_FEATURES, true, "");
-		enableLargeRivers = config.getBoolean("Generate larger rivers (may cause compatibilty issues)", CATEGORY_FEATURES, false, "");
+		addItemBatKiller = getBoolean("Bat B Gone", CATEGORY_FEATURES, true, config);
+		addBlockBlazingLantern = getBoolean("Blazing Lantern", CATEGORY_FEATURES, true, config);
+		addCotton = getBoolean("Cotton Plants", CATEGORY_FEATURES, true, config);
+		addBlockInfiniteWater = getBoolean("Ender Water Well", CATEGORY_FEATURES, true, config);
+		addFlowers = getBoolean("Extra Flowers", CATEGORY_FEATURES, true, config);
+		enableLargeRivers = getBoolean("Generate larger rivers (may cause compatibilty issues)", CATEGORY_FEATURES, false, config);
 		
-		cottonSeedDropWeight = config.getInt("Cotton seed drop weight from tall grass (0 disables)", CATEGORY_SETTINGS, 5, 0, 100, "");
+		cottonSeedDropWeight = config.getInt("Cotton seed drop weight from tall grass", CATEGORY_SETTINGS, 5, 0, 100, "Higher = more common; disabled if Cotton Plants = false");
 		
-		addQuartzRecipe = config.getBoolean("Block of Quartz to Nether Quartz Recipe", CATEGORY_RECIPES, true, "");
-		addBlockGrassRecipe = config.getBoolean("Grass Block Recipe", CATEGORY_RECIPES, true, "");
-		addSpongeRecipe = config.getBoolean("Sponge Recipe", CATEGORY_RECIPES, true, "");
-		addClayRecipe = config.getBoolean("Clay Recipe", CATEGORY_RECIPES, true, "");
-		addClayBallRecipe = config.getBoolean("Clay Block to Item Recipe", CATEGORY_RECIPES, true, "");
-		addWebRecipe = config.getBoolean("Cobweb Recipe", CATEGORY_RECIPES, true, "");
-		addSaddleRecipe = config.getBoolean("Saddle Recipe", CATEGORY_RECIPES, true, "");
-		addChainArmorRecipes = config.getBoolean("Chain Armor Recipes", CATEGORY_RECIPES, true, "");
-		addFlintRecipe = config.getBoolean("Flint Recipe", CATEGORY_RECIPES, true, "");
-		addHorseArmorRecipes = config.getBoolean("Horse Armor Recipes", CATEGORY_RECIPES, true, "");
-		addNameTagRecipe = config.getBoolean("Name Tag Recipe", CATEGORY_RECIPES, true, "");
+		addQuartzRecipe = getBoolean("Block of Quartz to Nether Quartz Recipe", CATEGORY_RECIPES, true, config);
+		addChainArmorRecipes = getBoolean("Chain Armor Recipes", CATEGORY_RECIPES, true, config);
+		addClayBallRecipe = getBoolean("Clay Block to Item Recipe", CATEGORY_RECIPES, true, config);
+		addClayRecipe = getBoolean("Clay Recipe", CATEGORY_RECIPES, true, config);
+		addWebRecipe = getBoolean("Cobweb Recipe", CATEGORY_RECIPES, true, config);
+		addFlintRecipe = getBoolean("Flint Recipe", CATEGORY_RECIPES, true, config);
+		addBlockGrassRecipe = getBoolean("Grass Block Recipe", CATEGORY_RECIPES, true, config);
+		addHorseArmorRecipes = getBoolean("Horse Armor Recipes", CATEGORY_RECIPES, true, config);
+		addNameTagRecipe = getBoolean("Name Tag Recipe", CATEGORY_RECIPES, true, config);
+		addSaddleRecipe = getBoolean("Saddle Recipe", CATEGORY_RECIPES, true, config);
+		addSpongeRecipe = getBoolean("Sponge Recipe", CATEGORY_RECIPES, true, config);
 		
-		enableHarvestcraftCompat = config.getBoolean("Pam's HarvestCraft", CATEGORY_COMPAT, true, "");
+		enableHarvestcraftCompat = getBoolean("Pam's HarvestCraft", CATEGORY_COMPAT, true, config);
 		
 		config.save();
+	}
+	
+	private static boolean getBoolean(String name, String category, boolean defaultValue, Configuration config)
+	{
+		Property prop = config.get(category, name, defaultValue);
+		prop.setLanguageKey(name);
+		return prop.getBoolean(defaultValue);
 	}
 }

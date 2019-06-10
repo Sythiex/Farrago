@@ -67,6 +67,9 @@ public class FarragoMod
 		
 		MinecraftForge.TERRAIN_GEN_BUS.register(new FarragoTerrainGenHandler());
 		
+		if(FarragoConfig.addCotton)
+			MinecraftForge.addGrassSeed(new ItemStack(FarragoItems.itemCottonSeeds), FarragoConfig.cottonSeedDropWeight);
+		
 		proxy.preInit(event);
 	}
 	

@@ -4,6 +4,7 @@ import com.sythiex.farrago.FarragoMod;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -17,6 +18,8 @@ public class BlockFlowerFarrago extends BlockBush
 		this.setUnlocalizedName(name);
 		this.setRegistryName(name);
 		this.setCreativeTab(FarragoMod.tabFarrago);
+		this.setHardness(0.0F);
+		this.setSoundType(SoundType.PLANT);
 	}
 	
 	@Override
