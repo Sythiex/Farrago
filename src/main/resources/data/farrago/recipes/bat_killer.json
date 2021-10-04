@@ -1,0 +1,19 @@
+{
+	"type": "crafting_shaped",
+	"pattern": [
+		"GFG",
+		"G G",
+		"GGG"
+	],
+	"key": {
+		"G": {
+			"tag": "forge:nuggets/gold"
+		},
+		"F": {
+			"item": "minecraft:fire_charge"
+		}
+	},
+	"result": {
+		"item": "farrago:bat_killer"
+	}
+}

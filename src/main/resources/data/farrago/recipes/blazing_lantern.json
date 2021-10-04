@@ -1,0 +1,22 @@
+{
+	"type": "crafting_shaped",
+	"pattern": [
+		"OBO",
+		"BGB",
+		"OBO"
+	],
+	"key": {
+		"O": {
+			"tag": "forge:obsidian"
+		},
+		"B": {
+			"tag": "forge:rods/blaze"
+		},
+		"G": {
+			"item": "minecraft:glowstone"
+		}
+	},
+	"result": {
+		"item": "farrago:blazing_lantern"
+	}
+}
