@@ -16,9 +16,10 @@ import net.minecraft.world.World;
 
 public class InvisibleLightTileEntity extends TileEntity implements ITickableTileEntity
 {
+	public final static int TIMER_MAX_VALUE = 60; // update every 3 sec
+	
 	private BlockPos lanternPos;
 	private int timer = 0;
-	private final int TIMER_MAX_VALUE = 60; // update every 3 sec
 	
 	public InvisibleLightTileEntity()
 	{
@@ -93,9 +94,7 @@ public class InvisibleLightTileEntity extends TileEntity implements ITickableTil
 	@Override
 	public SUpdateTileEntityPacket getUpdatePacket()
 	{
-		CompoundNBT tag = new CompoundNBT();
-		save(tag);
-		return new SUpdateTileEntityPacket(this.worldPosition, 0, tag);
+		return new SUpdateTileEntityPacket(this.worldPosition, 0, save(new CompoundNBT()));
 	}
 	
 	@Override
@@ -107,8 +106,7 @@ public class InvisibleLightTileEntity extends TileEntity implements ITickableTil
 	@Override
 	public CompoundNBT getUpdateTag()
 	{
-		CompoundNBT tag = new CompoundNBT();
-		return save(tag);
+		return save(new CompoundNBT());
 	}
 	
 	@Override

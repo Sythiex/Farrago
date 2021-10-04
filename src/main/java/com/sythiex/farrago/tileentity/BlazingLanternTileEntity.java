@@ -1,5 +1,7 @@
 package com.sythiex.farrago.tileentity;
 
+import java.util.Random;
+
 import com.sythiex.farrago.FarragoMod;
 import com.sythiex.farrago.init.FarragoBlocks;
 import com.sythiex.farrago.init.FarragoTileEntities;
@@ -17,8 +19,9 @@ import net.minecraft.world.World;
 
 public class BlazingLanternTileEntity extends TileEntity implements ITickableTileEntity
 {
+	public static final int TIMER_MAX_VALUE = 200; // update every 10 sec
+	
 	private int timer = 0;
-	private final int TIMER_MAX_VALUE = 40;// 200; // update every 10 sec
 	
 	public BlazingLanternTileEntity()
 	{
@@ -37,36 +40,30 @@ public class BlazingLanternTileEntity extends TileEntity implements ITickableTil
 		if(timer <= 0)
 		{
 			timer = TIMER_MAX_VALUE;
-			int count = 0; // used to offset InvisibleLightTileEntity update timer
 			
-			for(int i = -9; i <= 9; i++)
+			for(int i = -9; i <= 9; i += 3)
 			{
-				for(int j = -9; j <= 9; j++)
+				for(int j = -9; j <= 9; j += 3)
 				{
-					for(int k = -9; k <= 9; k++)
+					for(int k = -9; k <= 9; k += 3)
 					{
-						if((i % 3 == 0) && (j % 3 == 0) && (k % 3 == 0) && !(i == 0 && j == 0 && k == 0))
+						BlockPos currentPos = this.getBlockPos().offset(i, j, k);
+						Block blockToReplace = world.getBlockState(currentPos).getBlock();
+						
+						if(blockToReplace == Blocks.AIR)
 						{
-							BlockPos currentPos = this.getBlockPos().offset(i, j, k);
-							Block blockToReplace = world.getBlockState(currentPos).getBlock();
-							
-							if(blockToReplace == Blocks.AIR)
+							// testing seed: -576398854975003031
+							world.setBlockAndUpdate(currentPos, FarragoBlocks.invisibleLightBlock.defaultBlockState());
+							InvisibleLightTileEntity lightTE = (InvisibleLightTileEntity) world.getBlockEntity(currentPos);
+							if(lightTE != null)
 							{
-								// testing seed: -576398854975003031
-
-								world.setBlockAndUpdate(currentPos, FarragoBlocks.invisibleLightBlock.defaultBlockState());
-								InvisibleLightTileEntity lightTE = (InvisibleLightTileEntity) world.getBlockEntity(currentPos);
-								if(lightTE != null)
-								{
-									lightTE.setLanternPos(this.getBlockPos());
-									lightTE.setTimer(count % 60);
-									count++;
-								}
-								else
-								{
-									FarragoMod.logger.error("Tile entity at " + currentPos.toString() + " should be " + InvisibleLightTileEntity.class.toString() + " but is " + world.getBlockEntity(currentPos).toString());
-									System.out.println("lightTE is NULL, " + "currentPos: " + currentPos.toString() + ", block class: " + blockToReplace.getClass());
-								}
+								lightTE.setLanternPos(this.getBlockPos());
+								Random rand = new Random();
+								lightTE.setTimer(rand.nextInt(InvisibleLightTileEntity.TIMER_MAX_VALUE + 1));
+							}
+							else
+							{
+								FarragoMod.logger.error("Tile entity at " + currentPos.toString() + " should be " + InvisibleLightTileEntity.class.toString() + " but is " + world.getBlockEntity(currentPos).toString());
 							}
 						}
 					}
@@ -97,9 +94,7 @@ public class BlazingLanternTileEntity extends TileEntity implements ITickableTil
 	@Override
 	public SUpdateTileEntityPacket getUpdatePacket()
 	{
-		CompoundNBT tag = new CompoundNBT();
-		save(tag);
-		return new SUpdateTileEntityPacket(this.worldPosition, 0, tag);
+		return new SUpdateTileEntityPacket(this.worldPosition, 0, save(new CompoundNBT()));
 	}
 	
 	@Override
@@ -111,8 +106,7 @@ public class BlazingLanternTileEntity extends TileEntity implements ITickableTil
 	@Override
 	public CompoundNBT getUpdateTag()
 	{
-		CompoundNBT tag = new CompoundNBT();
-		return save(tag);
+		return save(new CompoundNBT());
 	}
 	
 	@Override
