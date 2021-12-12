@@ -15,7 +15,7 @@ public class BlazingLanternBlock extends Block
 	
 	public BlazingLanternBlock()
 	{
-		super(Properties.of(Material.METAL).sound(SoundType.LANTERN).strength(0.3F).lightLevel((blockState) ->
+		super(Properties.of(Material.BUILDABLE_GLASS).sound(SoundType.STONE).strength(0.3F).lightLevel((blockState) ->
 		{
 			return 15;
 		}));
